@@ -24,7 +24,7 @@ const Joi = require('joi')
         "string.pattern.base": `email must be a valid email`,
         "any.required": `email is a required field`
     }),
-    phone: Joi.string().trim().regex(/^[6-9]\d{9}$/).required().messages({
+    phone: Joi.string().trim().regex(/^\d{10}$/).required().messages({
         "string.base": `phone should be a type of string`,
         "string.empty": `phone must contain value`,
         "string.pattern.base": `phone must be 10 digit number`,
@@ -45,7 +45,7 @@ const Joi = require('joi')
         "string.pattern.base": `email must be a valid email`,
         "any.required": `email is a required field`
     }),
-    phone: Joi.string().trim().regex(/^[6-9]\d{9}$/).messages({
+    phone: Joi.string().trim().regex(/^\d{9}$/).messages({
        "string.base": `phone should be a type of string`,
         "string.empty": `phone must contain value`,
         "string.pattern.base": `phone must be 10 digit number`,
