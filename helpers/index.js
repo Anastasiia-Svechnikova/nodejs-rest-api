@@ -1,5 +1,8 @@
 const {requestError} = require('./requestError')
+const {postContactValidationSchema, updateContactValidationSchema} = require('./validationContacts')
 
 module.exports = {
-    requestError
+    requestError,
+    postContactValidationSchema,
+    updateContactValidationSchema
 }
