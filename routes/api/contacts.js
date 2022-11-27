@@ -1,24 +1,11 @@
 const express = require('express')
-const {requestError, postContactValidationSchema, updateContactValidationSchema} = require('../../helpers')
-// const Joi = require('joi')
-const {
-  listContacts,
-  getContactById,
-  removeContact,
-  addContact,
-  updateContact,
-} = require('../../models/contacts')
-
+const {requestError, postContactValidationSchema, updateContactValidationSchema, updateFavoriteValidationSchema} = require('../../helpers')
+const Contact = require('../../models/contact')
 const router = express.Router()
-// const validationSchema = Joi.object({
-//   name: Joi.string().required(),
-//   email: Joi.string().required(),
-//   phone: Joi.string().required(),
-// })
 
 router.get('/', async (req, res, next) => {
   try {
-    const result= await listContacts()
+    const result= await Contact.find()
     res.status(200).json(result)
   } catch (error) {
     next(error)
@@ -28,7 +15,7 @@ router.get('/', async (req, res, next) => {
 router.get('/:contactId', async (req, res, next) => {
   try {
     const id = req.params.contactId
-    const result = await getContactById(id)
+    const result = await Contact.findById(id)
     if (!result) {
       console.dir(requestError)
       throw requestError(404)
@@ -47,7 +34,9 @@ router.post('/', async (req, res, next) => {
     if (error) {
       throw requestError(400, error.message)
     }
-    const result =  await addContact(newContact)
+    newContact.favorite = newContact.favorite ?? false
+    console.log(newContact)
+    const result =  await Contact.create(newContact)
     res.status(201).json(result)
   } catch (error) {
     console.log(error)
@@ -60,7 +49,7 @@ router.post('/', async (req, res, next) => {
 router.delete('/:contactId', async (req, res, next) => {
   try {
     const id = req.params.contactId
-    const result = await removeContact(id)
+    const result = await await Contact.findByIdAndRemove(id)
     if (!result) {
       throw requestError(404)
     }
@@ -75,15 +64,33 @@ router.put('/:contactId', async (req, res, next) => {
     const id = req.params.contactId
     const newContact = req.body
     const { error } = updateContactValidationSchema.validate(newContact)
-    console.log(error.message)
     if (error) {
       throw requestError(400, error.message)
     }
     if (!newContact) {
       throw requestError(400)
     }
-    const result = await updateContact(id, newContact)
+    const result = await Contact.findByIdAndUpdate(id, newContact, {new:true})
     res.status(200).json(result)
+  } catch (error) {
+    next(error)
+  }
+})
+router.patch('/:contactId/favorite', async (req, res, next) => {
+  try {
+    const id = req.params.contactId;
+    const isFavorite = req.body;
+    console.log()
+    const { error } = updateFavoriteValidationSchema.validate(isFavorite)
+    if (error) {
+      throw requestError(400, error.message)
+    }
+      if (!isFavorite) {
+      throw requestError(400)
+      }
+        const result = await Contact.findByIdAndUpdate(id, isFavorite, {new:true})
+    res.status(200).json(result)
+    
   } catch (error) {
     next(error)
   }

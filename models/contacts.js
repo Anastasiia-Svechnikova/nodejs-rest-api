@@ -4,7 +4,6 @@ const { uid } = require('uid')
 
 const contactsPath = path.join(__dirname, "contacts.json");
 
-// const contactsPath = path.join(__dirname, "books.json");
 
 
 const listContacts = async () => {

@@ -10,7 +10,6 @@ const requestError = (status, message = null) => {
     const errorMessage = message || messages[status]
     const error = new Error(errorMessage)
     error.status = status
-    // console.log(error.status)
     return error
 }
 
