@@ -17,7 +17,6 @@ router.get('/:contactId', async (req, res, next) => {
     const id = req.params.contactId
     const result = await Contact.findById(id)
     if (!result) {
-      console.dir(requestError)
       throw requestError(404)
     }
     res.status(200).json(result)
@@ -35,7 +34,6 @@ router.post('/', async (req, res, next) => {
       throw requestError(400, error.message)
     }
     newContact.favorite = newContact.favorite ?? false
-    console.log(newContact)
     const result =  await Contact.create(newContact)
     res.status(201).json(result)
   } catch (error) {
@@ -80,7 +78,6 @@ router.patch('/:contactId/favorite', async (req, res, next) => {
   try {
     const id = req.params.contactId;
     const isFavorite = req.body;
-    console.log()
     const { error } = updateFavoriteValidationSchema.validate(isFavorite)
     if (error) {
       throw requestError(400, error.message)
