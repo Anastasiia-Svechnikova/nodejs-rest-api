@@ -1,9 +1,7 @@
-const {requestError} = require('./requestError')
-const {postContactValidationSchema, updateContactValidationSchema, updateFavoriteValidationSchema} = require('./validationContacts')
+const { requestError } = require('./requestError')
+const {controllerWrapper} = require('./controllerWrapper')
 
 module.exports = {
     requestError,
-    postContactValidationSchema,
-    updateContactValidationSchema,
-    updateFavoriteValidationSchema,
+    controllerWrapper
 }
