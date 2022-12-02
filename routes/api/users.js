@@ -8,6 +8,6 @@ const {usersCtrl} = require('../../controllers')
 
 const userRouter = express.Router()
 
-userRouter.post('/register', validateBody(userValidation.registerUser), controllerWrapper(usersCtrl.register) )
+userRouter.post('/signup', validateBody(userValidation.registerUser), controllerWrapper(usersCtrl.register) )
 
 module.exports = userRouter
