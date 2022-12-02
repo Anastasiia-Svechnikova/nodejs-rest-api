@@ -6,16 +6,11 @@ const updateContact = require('./updateContact')
 const updateFavorite = require('./updateFavorite')
 
 
-const contactsCtrl = {
+module.exports = {
     getAll,
     getById,
     postContact,
     deleteContact,
     updateContact,
     updateFavorite
-}
-
-
-module.exports = {
-    contactsCtrl
 }

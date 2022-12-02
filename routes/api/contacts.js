@@ -1,10 +1,11 @@
 const express = require('express')
+
 const {controllerWrapper } = require('../../helpers')
 const {contactValidation} = require('../../shemas')
-const router = express.Router()
 const { contactsCtrl } = require('../../controllers')
 const {validateBody,validateId } = require('../../middlewares')
 
+const router = express.Router()
 
 router.get('/', controllerWrapper(contactsCtrl.getAll))
 

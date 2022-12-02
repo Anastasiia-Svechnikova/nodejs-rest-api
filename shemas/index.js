@@ -1,16 +1,8 @@
-const {
- postContact,
-    updateContact,
-    updateFavorite
-} = require('./validationContacts')
+const contactValidation= require('./validationContacts')
     
-
-const contactValidation = {
- postContact,
-    updateContact,
-    updateFavorite
-}
+const userValidation = require('./validationUser')
 
 module.exports = {
-    contactValidation
+    contactValidation, 
+    userValidation
 }
