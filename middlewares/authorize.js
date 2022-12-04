@@ -19,7 +19,7 @@ const authorize = async (req, res, next) => {
             throw requestError(401)
         }
         req.user = user;
-
+        // console.log(req.user)
         next()
     } catch (error) {
         throw requestError(401)
