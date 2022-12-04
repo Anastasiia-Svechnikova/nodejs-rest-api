@@ -12,9 +12,11 @@ userRouter.post('/signup', validateBody(userValidation.registerUser), controller
 
 userRouter.post('/login', validateBody(userValidation.loginUser), controllerWrapper(usersCtrl.login))
 
-userRouter.get('/logout', controllerWrapper())
+userRouter.get('/logout', authorize, controllerWrapper(usersCtrl.logout))
 
-userRouter.get('/current',authorize, controllerWrapper(usersCtrl.getCurrent))
+userRouter.get('/current', authorize, controllerWrapper(usersCtrl.getCurrent))
+
+userRouter.patch('/',authorize, validateBody(userValidation.updateSubscription), controllerWrapper(usersCtrl.updateSubscription))
 
 
 module.exports = userRouter
