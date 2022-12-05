@@ -1,7 +1,7 @@
 const { requestError } = require('../../helpers');
 const User = require('../../models/user')
 
-const logout = async (req, res, next) => {
+const logout = async (req, res) => {
     const { id } = req.user;
     
     const user = await User.findById(id);

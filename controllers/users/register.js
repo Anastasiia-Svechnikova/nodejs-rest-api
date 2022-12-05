@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt")
 const User = require('../../models/user')
 
 
-const register = async (req, res, next) => {
+const register = async (req, res) => {
     const { email, password } = req.body
     const cloneUser = await User.findOne({email})
     if (cloneUser) {
