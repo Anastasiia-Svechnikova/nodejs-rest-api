@@ -1,6 +1,6 @@
 const Joi = require('joi')
 
- const postContactValidationSchema = Joi.object({
+ const postContact = Joi.object({
     name: Joi.string().trim().required().messages({
         "string.base": `name should be a type of string`,
         "string.empty": `name must contain value`,
@@ -25,7 +25,7 @@ const Joi = require('joi')
 }).required();
 
 
- const updateContactValidationSchema = Joi.object({
+ const updateContact = Joi.object({
     name: Joi.string().trim().messages({
        "string.base": `name should be a type of string`,
         "string.empty": `name must contain value`,
@@ -49,7 +49,7 @@ const Joi = require('joi')
     })
  }).min(1);
 
-const updateFavoriteValidationSchema = Joi.object({
+const updateFavorite= Joi.object({
         favorite: Joi.boolean().required().messages({
          "boolean.base": `favorite should be a type of boolean`,
         "boolean.empty": `missing field favorite`,
@@ -59,7 +59,7 @@ const updateFavoriteValidationSchema = Joi.object({
 
 
 module.exports = {
-    postContactValidationSchema,
-    updateContactValidationSchema,
-    updateFavoriteValidationSchema
+    postContact,
+    updateContact,
+    updateFavorite
 }
