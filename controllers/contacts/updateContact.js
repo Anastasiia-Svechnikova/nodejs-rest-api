@@ -3,11 +3,13 @@ const Contact = require('../../models/contact')
 
 const updateContact = async (req, res) => {
     const newContact = req.body;
-    const id = req.params.contactId
+    const id = req.params.contactId;
+        const userId = req.user._id
+
     if (!newContact) {
         throw requestError(400)
     }
-    const result = await Contact.findByIdAndUpdate(id, newContact, { new: true })
+    const result = await Contact.findOneAndUpdate({id, owner: userId}, newContact, { new: true })
     if (!result) {
         throw requestError(404)
     }
