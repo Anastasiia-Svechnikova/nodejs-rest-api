@@ -1,7 +1,7 @@
 const express = require('express')
 
 const { controllerWrapper } = require('../../helpers')
-const { validateBody, authorize } = require('../../middlewares')
+const { validateBody, authorize, upload } = require('../../middlewares')
 const { userValidation } = require('../../shemas')
 const {usersCtrl} = require('../../controllers')
 
@@ -18,5 +18,6 @@ userRouter.get('/current', authorize, controllerWrapper(usersCtrl.getCurrent))
 
 userRouter.patch('/',authorize, validateBody(userValidation.updateSubscription), controllerWrapper(usersCtrl.updateSubscription))
 
+userRouter.patch('/avatars',authorize, upload.single('avatar'), controllerWrapper(usersCtrl.updateAvatar))
 
 module.exports = userRouter
