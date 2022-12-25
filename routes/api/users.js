@@ -10,7 +10,7 @@ const userRouter = express.Router()
 
 userRouter.post('/signup', validateBody(userValidation.registerUser), controllerWrapper(usersCtrl.register))
 
-userRouter.get('verify/:verificationToken', controllerWrapper(usersCtrl.verifyUser))
+userRouter.get('/verify/:verificationToken', controllerWrapper(usersCtrl.verifyUser))
 
 userRouter.post('/login', validateBody(userValidation.loginUser), controllerWrapper(usersCtrl.login))
 
