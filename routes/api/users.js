@@ -12,6 +12,8 @@ userRouter.post('/signup', validateBody(userValidation.registerUser), controller
 
 userRouter.get('/verify/:verificationToken', controllerWrapper(usersCtrl.verifyUser))
 
+userRouter.post('/verify', controllerWrapper(usersCtrl.resendEmail))
+
 userRouter.post('/login', validateBody(userValidation.loginUser), controllerWrapper(usersCtrl.login))
 
 userRouter.get('/logout', authorize, controllerWrapper(usersCtrl.logout))
